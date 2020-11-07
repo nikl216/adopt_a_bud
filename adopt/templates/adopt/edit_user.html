@@ -1,0 +1,29 @@
+{% extends "adopt/layout.html" %}
+
+{% block body %}
+<h5 class="p-3">Username: {{user_profile.username}}</h5>
+<form class="" method="POST" action="{% url 'profile' user_profile.pk %}">
+    {% csrf_token %}
+<h5 class="p-3">First Name: <input type="text" name="firstname" placeholder="{{user_profile.first_name}}"></h5>
+<h5 class="p-3">Last Name: <input type="text" name="lastname" placeholder="{{user_profile.last_name}}"></h5>
+<h5 class="p-3">Phone: <input type="text" name="phone" placeholder="{{user_profile.Phone}}"></h5>
+<div class="form-inline">
+    <h5 class="p-3">Do you have a garden ?: </h5>
+    <select id="garden form-control" name="garden">
+        <option value="true" {% if user_profile.has_garden == True %} selected {% endif %}>Yes</option>
+        <option value="false" {% if user_profile.has_garden == False %} selected {% endif %}>No</option>
+    </select>
+
+</div>
+
+<h5 class="p-3">Age: <input type="text" name="age" placeholder="{{user_profile.Age}}"></h5>
+<h5 class="p-3">Ocuupation: <input type="text" name="occupation" placeholder="{{user_profile.Occupation}}"></h5>
+
+{% if user == user_profile %}
+
+    <input type="hidden" name="_method" value="save">
+<button class="btn btn-primary m-2" type="submit">Save Changes</button>
+
+{% endif %}
+</form>
+{%endblock %}

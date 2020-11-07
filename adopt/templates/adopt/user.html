@@ -1,0 +1,27 @@
+{% extends "adopt/layout.html" %}
+
+{% block body %}
+<h5 class="p-3">Username: {{user_profile.username}}</h5>
+<h5 class="p-3">Name: {{user_profile.get_full_name}}</h5>
+<h5 class="p-3">Email: {{user_profile.email}}</h5>
+<h5 class="p-3">Phone: {{user_profile.Phone}}</h5>
+<div class="form-inline">
+    <h5 class="p-3">Do you have a garden ?: </h5>
+    <select id="garden form-control">
+        <option value="true" {% if user_profile.has_garden == True %} selected {% endif %}>Yes</option>
+        <option value="false" {% if user_profile.has_garden == False %} selected {% endif %}>No</option>
+    </select>
+
+</div>
+
+<h5 class="p-3">Age: {{user_profile.Age}}</h5>
+<h5 class="p-3">Ocuupation: {{user_profile.Occupation}}</h5>
+
+{% if user == user_profile %}
+<form method="POST" action="{% url 'profile' user_profile.pk %}">
+    {% csrf_token %}
+    <input type="hidden" name="_method" value="edit">
+    <button class="btn btn-primary m-2" type="submit">Update</button>
+</form>
+{% endif %}
+{%endblock %}

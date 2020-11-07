@@ -1,0 +1,34 @@
+{% extends "adopt/layout.html" %}
+
+{% block body %}
+<div id="messages_view" class="container-fluid">
+    {% for message in messages %}
+    
+    <div class="border border-primary  p-2" id="messages"  data-message="{{ message.id }}">
+ 
+       <span class="p-2 ml-5">From:{{ message.sender}}</span> 
+       <span  class="p-2 ml-5">Adoption Request</span> 
+    </div>
+
+    {% endfor %}
+</div>   
+<div id="message_view" style="display:none">
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="inputGroup-sizing-default">Send by</span>
+        </div>
+        <div id="send_to" class="form-control"></div>
+    </div>
+
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="inputGroup-sizing-default">Message</span>
+        </div>
+        <div id="message" class="border border-info p-2"></div> 
+         </div>
+ 
+
+</div>
+
+    
+{% endblock %}

@@ -1,0 +1,44 @@
+{% extends "adopt/layout.html" %}
+
+{% block body %}
+    <h5>Find your next buddy</h5>
+    
+
+    {% for post in page_obj %}
+    <div class="card" style="margin: auto;">
+        <img src="{{post.imageurl}}" class="card-img-top" height=270px width=300px alt="...">
+        <div class="card-body">
+          <h5 class="card-title">{{post.name}}</h5>
+          <p class="card-text">{{post.desc}}</p>
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">Animal: {{post.animal}}</li>
+          <li class="list-group-item">Age: {{post.age}}</li>
+          <li class="list-group-item">Created By:<a href="{% url 'profile' post.created_by.pk %}"> {{post.created_by.username}}</a></li>
+          <li class="list-group-item">Location: {{post.District}},{{post.State}}</li>
+        </ul>
+        <div class="card-body">
+          <a href="{% url 'send' post.created_by.pk %}"><button class="btn btn-primary">Adopt
+          </button></a>
+        </div>
+      </div>
+    
+
+    {% endfor %}
+
+    <nav aria-label="Page navigation example" class='p-3 float-right'>
+      <ul class="pagination">
+          {% if page_obj.has_previous %}
+          <li class="page-item"><a class="page-link"  href="?page=1">&laquo; first</a></li>
+              <li class="page-item"> <a class="page-link" href="?page={{ page_obj.previous_page_number }}">previous</a></li>
+          {% endif %}
+          <li class="current page-item">
+              <li class="page-item page-link">Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.</li>
+          </li>
+          {% if page_obj.has_next %}
+          <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}">next</a></li>
+          <li class="page-item"><a class="page-link" href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a></li>
+      {% endif %}
+      </ul>
+    </nav>
+{% endblock %}

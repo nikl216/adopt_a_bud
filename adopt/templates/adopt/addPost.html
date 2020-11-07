@@ -1,0 +1,62 @@
+{% extends "adopt/layout.html" %} {% block body %}
+<h2>List Adoption</h2>
+
+<div class="container-fluid p-2">
+    <form class="form-group" method="POST" action="{% url 'add_post' %}">
+        {% csrf_token %}
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="inputGroup-sizing-default">Name</span>
+            </div>
+            <input type="text" class="form-control" name="name" aria-label="Sizing example input" placeholder="Enter the name of animal" aria-describedby="inputGroup-sizing-default">
+          </div>
+
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <label class="input-group-text" for="inputGroupSelect01">Animal</label>
+            </div>
+            <select class="custom-select" name="animal" id="inputGroupSelect01">
+              <option selected>Choose...</option>
+              <option value="dog">Dog</option>
+              <option value="cat">Cat</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="inputGroup-sizing-default">Age</span>
+            </div>
+            <input type="text" class="form-control" name="age" aria-label="Sizing example input" placeholder="Enter the age of animal in years" aria-describedby="inputGroup-sizing-default">
+          </div>
+
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="inputGroup-sizing-default">Description</span>
+            </div>
+            <input type="text" class="form-control" name="desc" aria-label="Sizing example input" placeholder="Enter a short description" aria-describedby="inputGroup-sizing-default">
+          </div>
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="inputGroup-sizing-default">District</span>
+            </div>
+            <input type="text" class="form-control" name="district" aria-label="Sizing example input" placeholder="Enter District" aria-describedby="inputGroup-sizing-default">
+          </div>
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="inputGroup-sizing-default">State</span>
+            </div>
+            <input type="text" class="form-control" name="state" aria-label="Sizing example input" placeholder="Enter State" aria-describedby="inputGroup-sizing-default">
+          </div>
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="inputGroup-sizing-default">Image</span>
+            </div>
+            <input type="text" class="form-control" name="url" aria-label="Sizing example input" placeholder="Image url" aria-describedby="inputGroup-sizing-default">
+          </div>
+
+
+        <button class="btn btn-primary m-5" type="submit">Create</button>
+    </form>
+</div>
+{% endblock %}
